@@ -102,7 +102,7 @@ public class passaporto {
     }
 
     public boolean isValid(){
-        if(this.byr == this.iyr == this.eyr == this.hgt == this.hcl == this.ecl == this.pid == this.cid == true){
+        if(this.byr == this.iyr == this.eyr == this.hgt == this.hcl == this.ecl == this.pid == true){
             return true;
         }
         return false;

@@ -1,26 +1,70 @@
 import java.io.*;
+import java.util.*;
 
 public class Day4 {
     public static void main(String[] args) {
-        passaporto pass = new passaporto();
 
         try {
-            int x = howManyValid(new BufferedReader(new FileReader("input.txt")), pass);
+            int x = howManyValid(new BufferedReader(new FileReader("input.txt")));
+            System.out.println(x);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    static int howManyValid(BufferedReader in, passaporto pass) throws IOException{
+    static int howManyValid(BufferedReader in) throws IOException{
         int result = 0;
-        String str = "";
+        String read = null;
         String tmp = "";
-        
-        while((str=in.readLine())!=null){
-            if(str.isBlank())
+        List<String> splited = new ArrayList<String>();
+        String[] toSplit;
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        while ((read = in.readLine()) != null) {
+            if(!read.isBlank()){
+                tmp += read;
+                tmp += " ";
+            }
+                
+            else{
+                splited.add(tmp);
+                tmp = "";
+            }
+                
         }
 
+        for (String part : splited) {
+            toSplit = part.split("\\s+");
+
+            for (String pair : toSplit) {
+                String[] keyValue = pair.split(":");
+                map.put(keyValue[0], keyValue[1]);
+            }
+
+            System.out.println("Passaporto: " + map);
+
+            if(isValid(map))
+                result++;
+
+            map = new HashMap<String, String>();
+            toSplit = null;
+        }
         return result;
+    }
+
+    static Boolean isValid(HashMap<String, String> passport){
+        Boolean birth_year = passport.containsKey("byr");
+        Boolean issue_year = passport.containsKey("iyr");
+        Boolean expiration_year = passport.containsKey("eyr");
+        Boolean height = passport.containsKey("hgt");
+        Boolean hair_color = passport.containsKey("hcl");
+        Boolean eye_color = passport.containsKey("ecl");
+        Boolean passport_id = passport.containsKey("pid"); 
+
+        if(birth_year && issue_year && expiration_year && height && hair_color && eye_color && passport_id)
+            return true;
+         
+        return false;
     }
 }
