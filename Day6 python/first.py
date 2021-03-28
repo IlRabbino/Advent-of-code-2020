@@ -2,10 +2,8 @@ def answer(answers):
     total = []
     for answer in answers:
         for char in answer:
-            if char in total:
-                print(char)
-            else:
-                total.append(char)
+            if char not in total:
+                total.append(char)              
     return len(total)
 
 str = open("input.txt", "r").read()
