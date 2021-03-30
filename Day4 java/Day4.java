@@ -12,7 +12,7 @@ public class Day4 {
         }
 
     }
-
+    
     static int howManyValid(BufferedReader in) throws IOException{
         int result = 0;
         String read = null;
@@ -22,6 +22,7 @@ public class Day4 {
         HashMap<String, String> map = new HashMap<String, String>();
 
         while ((read = in.readLine()) != null) {
+    
             if(!read.isBlank()){
                 tmp += read;
                 tmp += " ";
@@ -34,6 +35,8 @@ public class Day4 {
                 
         }
 
+        splited.add(tmp);
+
         for (String part : splited) {
             toSplit = part.split("\\s+");
 
@@ -41,8 +44,6 @@ public class Day4 {
                 String[] keyValue = pair.split(":");
                 map.put(keyValue[0], keyValue[1]);
             }
-
-            System.out.println("Passaporto: " + map);
 
             if(isValid(map))
                 result++;
@@ -61,10 +62,13 @@ public class Day4 {
         Boolean hair_color = passport.containsKey("hcl");
         Boolean eye_color = passport.containsKey("ecl");
         Boolean passport_id = passport.containsKey("pid"); 
-
+        System.out.println(Integer.parseInt(passport.get("byr")));
         if(birth_year && issue_year && expiration_year && height && hair_color && eye_color && passport_id)
+            //return areDataValid(passaporto)
             return true;
-         
+      
         return false;
     }
+
+    
 }
