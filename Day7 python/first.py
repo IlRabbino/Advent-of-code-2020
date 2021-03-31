@@ -1,5 +1,3 @@
-#i've needed online help to complete this one
-
 def thereIsBag(bags, baggy):
     queue = []
     container = []
