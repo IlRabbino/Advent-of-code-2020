@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Day3_1{
+public class first{
     public static void main(String[] args) {
         BufferedReader in;
         int counter = 0;

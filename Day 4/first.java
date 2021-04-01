@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Day4 {
+public class first {
     public static void main(String[] args) {
 
         try {
@@ -64,12 +64,11 @@ public class Day4 {
         Boolean passport_id = passport.containsKey("pid"); 
         
         if(birth_year && issue_year && expiration_year && height && hair_color && eye_color && passport_id)
-            return areDataValid(passport);
-            //return true;
+            return true;
       
         return false;
     }
-
+    /********************************************************************************************************************************* 
     static Boolean areDataValid(HashMap<String, String> passport){
         Boolean birth_year_valid = (1919<Integer.parseInt(passport.get("byr")) && Integer.parseInt(passport.get("byr"))<2003);
         Boolean issue_year_valid = (2009<Integer.parseInt(passport.get("iyr")) && Integer.parseInt(passport.get("iyr"))<2021);
@@ -150,4 +149,6 @@ public class Day4 {
             return true;
         return false;
     }
+
+    *********************************************************************************************************************************************************/
 }

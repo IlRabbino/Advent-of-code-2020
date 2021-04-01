@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Day3_2 {
+public class second {
     public static void main(String[] args) {
         try {
             long x = somma(calcola(new BufferedReader(new FileReader("input.txt")), 1, 1),
