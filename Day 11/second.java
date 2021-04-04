@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.ref.Cleaner;
 import java.util.*;
 
 public class second {
@@ -59,91 +60,94 @@ public class second {
                     case 'L':
                         boolean nd = false;
                         //Check verticale
-                        for(int i2=i+1; i2<n; i2++){
-                            if(i2>-1 && i2<n){
-                                if(map[i2][j]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i2][j]=='L')
-                                    break;
+                        if(i<n-1){
+                            for(int i2=i+1; i2<n; i2++){
+                                
+                                    if(map[i2][j]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i2][j]=='L')
+                                        break;
                             }
                         }
-                        for(int i2=i-1; i2>=0; i2--){
-                            if(i2>-1 && i2<n){
-                                if(map[i2][j]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i2][j]=='L')
-                                    break;
+                        if(i>0){
+                            for(int i2=i-1; i2>=0; i2--){
+                                
+                                    if(map[i2][j]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i2][j]=='L')
+                                        break;
                             }
                         }
 
                         //Check orizzontale
-                        for(int j2=j+1; j2<m; j2++){
-                            if(j2>-1 && j2<m){
-                                if(map[i][j2]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i][j2]=='L')
-                                    break;
+                        if(j<m-1){
+                            for(int j2=j+1; j2<m; j2++){
+                                    if(map[i][j2]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i][j2]=='L')
+                                        break;
                             }
                         }
-                        for(int j2=i-1; j2>=0; j2--){
-                            if(j2>-1 && j2<m){
-                                if(map[i][j2]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i][j2]=='L')
-                                    break;
+                        if(j>0){
+                            for(int j2=j-1; j2>=0; j2--){   
+                                    if(map[i][j2]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i][j2]=='L')
+                                        break;
                             }
                         }
-
                         //Check diagonale
-                        for(int i2=i+1, j2=j+1; i2<n && j2<m; i2++, j2++){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i<n-1 && j<m-1){
+                            for(int i2=i+1, j2=j+1; i2<n && j2<m; i2++, j2++){
+                                    if(map[i2][j2]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-                        for(int i2=i-1, j2=j-1; i2>=0 && j2>=0; i2--, j2--){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i>0 && j>0){
+                            for(int i2=i-1, j2=j-1; i2>=0 && j2>=0; i2--, j2--){
+                                //if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
+                                    if(map[i2][j2]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-                        for(int i2=i+1, j2=j-1; i2<n && j2>=0; i2++, j2--){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i<n-1 && j>0){
+                            for(int i2=i+1, j2=j-1; i2<n && j2>=0; i2++, j2--){
+                                //if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
+                                    if(map[i2][j2]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-                        for(int i2=i-1, j2=j+1; i2>=0 && j2<m; i2--, j2++){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    nd = true;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i>0 && j<m-1){
+                            for(int i2=i-1, j2=j+1; i2>=0 && j2<m; i2--, j2++){
+                                //if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
+                                    if(map[i2][j2]=='#'){
+                                        nd = true;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-
                         if(nd==true)
                             next[i][j] = 'L';
                         else 
@@ -152,8 +156,9 @@ public class second {
                     
                     case '#':
                         int dn = 0;
-                        for(int i2=i+1; i2<n; i2++){
-                            if(i2>-1 && i2<n){
+                        //Check verticale
+                        if(i<n-1){
+                            for(int i2=i+1; i2<n; i2++){
                                 if(map[i2][j]=='#'){
                                     dn++;
                                     break;
@@ -162,8 +167,8 @@ public class second {
                                     break;
                             }
                         }
-                        for(int i2=i-1; i2>=0; i2--){
-                            if(i2>-1 && i2<n){
+                        if(i>0){
+                            for(int i2=i-1; i2>=0; i2--){
                                 if(map[i2][j]=='#'){
                                     dn++;
                                     break;
@@ -174,8 +179,8 @@ public class second {
                         }
 
                         //Check orizzontale
-                        for(int j2=j+1; j2<m; j2++){
-                            if(j2>-1 && j2<m){
+                        if(j<m-1){
+                            for(int j2=j+1; j2<m; j2++){
                                 if(map[i][j2]=='#'){
                                     dn++;
                                     break;
@@ -184,59 +189,60 @@ public class second {
                                     break;
                             }
                         }
-                        for(int j2=i-1; j2>=0; j2--){
-                            if(j2>-1 && j2<m){
-                                if(map[i][j2]=='#'){
-                                    dn++;
-                                    break;
-                                }
-                                if(map[i][j2]=='L')
-                                    break;
+                        if(j>0){
+                            for(int j2=j-1; j2>=0; j2--){   
+                                    if(map[i][j2]=='#'){
+                                        dn++;
+                                        break;
+                                    }
+                                    if(map[i][j2]=='L')
+                                        break;
                             }
                         }
-
                         //Check diagonale
-                        for(int i2=i+1, j2=j+1; i2<n && j2<m; i2++, j2++){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    dn++;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i<n-1 && j<m-1){
+                            for(int i2=i+1, j2=j+1; i2<n && j2<m; i2++, j2++){
+                                    if(map[i2][j2]=='#'){
+                                        dn++;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-                        for(int i2=i-1, j2=j-1; i2>=0 && j2>=0; i2--, j2--){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    dn++;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i>0 && j>0){
+                            for(int i2=i-1, j2=j-1; i2>=0 && j2>=0; i2--, j2--){
+                                //if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
+                                    if(map[i2][j2]=='#'){
+                                        dn++;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-                        for(int i2=i+1, j2=j-1; i2<n && j2>=0; i2++, j2--){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    dn++;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i<n-1 && j>0){
+                            for(int i2=i+1, j2=j-1; i2<n && j2>=0; i2++, j2--){
+                                //if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
+                                    if(map[i2][j2]=='#'){
+                                        dn++;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-                        for(int i2=i-1, j2=j+1; i2>=0 && j2<m; i2--, j2++){
-                            if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
-                                if(map[i2][j2]=='#'){
-                                    dn++;
-                                    break;
-                                }
-                                if(map[i2][j2]=='L')
-                                    break;
+                        if(i>0 && j<m-1){
+                            for(int i2=i-1, j2=j+1; i2>=0 && j2<m; i2--, j2++){
+                                //if(i2>-1 && i2<n && j2>-1 && j2<m && (i2!=i || j2!=j)){
+                                    if(map[i2][j2]=='#'){
+                                        dn++;
+                                        break;
+                                    }
+                                    if(map[i2][j2]=='L')
+                                        break;
                             }
                         }
-
                         if(dn>=5)
                             next[i][j] = 'L';
                         break;    
